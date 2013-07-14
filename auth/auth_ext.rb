@@ -27,6 +27,7 @@ module Sinatra
       
       app.before do
         @session = session
+        @test = 'test'
       end
       
       app.get '/login' do
@@ -36,7 +37,7 @@ module Sinatra
       end
 
       app.post '/login' do
-        user = User.get( :email => params[:email], :password_hash => (Digest::SHA2.new << params[:password]).to_s )
+        user = User.first( :email => params[:email], :password_hash => (Digest::SHA2.new << params[:password]).to_s )
         puts "#{user}"
         session[:user] = user
         redirect '/'
@@ -48,6 +49,11 @@ module Sinatra
         erb :auth_register
       end
 
+      app.post '/logout' do
+        logout!
+        redirect '/'
+      end
+      
       app.post '/register' do
         email = params[:email]
         password = params[:password]

@@ -18,6 +18,7 @@ class IndexModule < Sinatra::Base
     DataMapper.setup(:default, "#{config['db']['protocol']}://#{config['db']['username']}:#{config['db']['password']}@#{config['db']['host']}/#{config['db']['database']}")
     DataMapper.finalize
     
+    set :sessions, true
     set :app_name, 'Workout Tracker'
     set :port, config['port']
     set :protection, :except => :json_csrf

@@ -15,7 +15,7 @@
 <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-	  <% if @session['user'] == nil %>
+	  <% if @session[:user] == nil %>
 	  	<form class="navbar-form pull-right" action="/register" method="get">
 		  <button type="submit" class="btn">Register</button>
 	  	</form>
@@ -25,7 +25,10 @@
 		  <button type="submit" class="btn">Sign in</button>
 	  	</form>
 	  <% else %>
-	    <span class="pull-right">Welcome, @session['user'].email</span>
+	  	<form class="navbar-form pull-right" action="/logout" method="post">
+		  <button type="submit" class="btn">Log out</button>
+	  	</form>
+	    <span class="pull-right">Welcome, <%=@session[:user].email%></span>
 	  <% end %>
 	      <!-- <a class="pull-right" href="/">
           <img src="/img/cubes.png" id="cubeImage" alt="cubes" height="38px"/>
