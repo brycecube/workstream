@@ -19,6 +19,11 @@ class IndexModule < Sinatra::Base
     DataMapper.finalize
     
     set :sessions, true
+    use Rack::Session::Cookie, :key => 'rack.session',
+                               :expire_after => 31536000,
+                               :secret => config[:cookie_secret]
+    set :session_secret, config[:cookie_secret]
+    
     set :app_name, 'Workout Tracker'
     set :port, config['port']
     set :protection, :except => :json_csrf
