@@ -57,5 +57,62 @@ class IndexModule < Sinatra::Base
     end
   end
   
+  post '/routine' do
+    # delete old exercises
+    routine_id = params[:routine_id]
+    RoutineExercise.all(:routine_id => routine_id).destroy
+
+    # get and update routine
+    routine = Routine.get(routine_id)
+    routine.name = params[:name]
+    routine.description = params[:description]
+    
+    # create new exercises and sort them
+    exercises = []
+    params.each() do |key, value|
+      if key.start_with?('name_')
+        old_id = key.split('_')[1]
+        sort = params["sort_#{old_id}".to_sym]
+        puts "#{old_id} - #{sort}"
+        re = RoutineExercise.new(:name => value, :sort => sort)
+        exercises << re
+      end
+    end
+    exercises.sort { |a, b| a.sort <=> b.sort }
+    
+    # add new exercises to the routine
+    for exercise in exercises do
+      routine.routine_exercises << exercise
+      exercise.save
+    end
+    
+    #save
+    routine.save
+    
+    redirect '/routines'
+  end
+  
+  post '/add-routine' do
+    if session[:user]
+      user = session[:user]
+      r = Routine.create(:name=> 'New Routine', :user_id => user.id)
+      r.errors.each do |error|
+        puts error
+      end
+      redirect '/routines'
+    else
+      'Please log in first'
+    end
+  end
+  
+  post '/add-routine-exercise' do
+    r = Routine.get(params[:routine_id])
+    re = RoutineExercise.create(:name => 'New Exercise', :sort => r.routine_exercises.last.sort+1)
+    r.routine_exercises << re
+    r.save
+    re.save
+    redirect '/routines'
+  end
+  
   run! if app_file == $0
 end
