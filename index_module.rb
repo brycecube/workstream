@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra/base'
 require 'auth/auth_ext'
+require 'model/routine'
 
 class IndexModule < Sinatra::Base
   register Sinatra::Auth
@@ -41,9 +42,20 @@ class IndexModule < Sinatra::Base
   get '/' do
     @css.push( '/css/login.css' )
     @js.push( '/js/login.js' )
-    @page_title = "#{options.app_name} - Home"
+    @page_title = "#{settings.app_name} - Home"
 
     erb :index
+  end
+
+  get '/routines' do
+    if session[:user]
+      user = session[:user]
+      @page_title = "#{settings.app_name} - Routines for #{user.email}"
+      @routines = Routine.all(:user_id => user.id)
+      erb :routines
+    else
+      'Please log in first'
+    end
   end
 
   run! if app_file == $0
