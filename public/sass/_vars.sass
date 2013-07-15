@@ -17,9 +17,13 @@ $c-hblack: rgba(0,0,0,.5)
 $f-main: 'Droid Sans', Helvetica, Arial, sans-serif
 $f-serif: 'Georgia', serif
 
+$i-bg: inline-image('bg.jpg')
+
 @mixin ctaBtn
   border: 0
   color: #fff
+  font-weight: bold
+  text-shadow: 0px 1px 0px #a36f00
   @include box-shadow(0 3px 7px #000)
   @include background(#bf7705 linear-gradient(#e7cc0b, #bf7705))
   @include border-radius(3px)

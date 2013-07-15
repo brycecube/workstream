@@ -11,7 +11,9 @@
 </head>
 <body>
 
-<!-- main nav
+<%
+=begin
+%>
 <ul class="nav">
   <% @nav.each() do |item| %>
       <% match = item[:url] == request.path_info %>
@@ -21,7 +23,9 @@
       </li>
   <% end %>
 </ul>
- -->
+<%
+=end
+%>
 
 <div id="container">
     <%= yield %>
