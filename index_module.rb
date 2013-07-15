@@ -33,19 +33,20 @@ class IndexModule < Sinatra::Base
   before do
     @js = ['/js/main.js']
     @css = ['/css/main.css']
-    @nav = [
-            { :url => '/',              :label => 'Home',    :child_urls => []},
-            { :url => '/account',       :label => 'Profile',      :child_urls => ['account/profile'] },
-          ]
+    # @nav = [
+    #         { :url => '/',              :label => 'Home',    :child_urls => []},
+    #         { :url => '/account',       :label => 'Profile',      :child_urls => ['account/profile'] },
+    #       ]
   end
 
   get '/' do
-    @css.push( '/css/main.css' )
+    @css.push( '/css/login.css' )
+    @js.push( '/js/login.js' )
     @page_title = "#{settings.app_name} - Home"
 
     erb :index
   end
-  
+
   get '/routines' do
     if session[:user]
       user = session[:user]

@@ -1,4 +1,40 @@
-Login/Register page here
-<br/>
-or if you are logged in, redirect to "todays" workout
-<br/><br/>
+<h1>Liftstream</h1>
+
+<% if @session[:user] == nil %>
+  <form action="/login" method="post" autocomplete="off">
+    <input type="text" name="email" placeholder="email address" />
+    <input type="password" name="password" placeholder="password" />
+    <button type="submit">Log in</button>
+  </form>
+  <a class="stickFoot" href="/register">Register for an account</a>
+<% else %>
+  <form action="/logout" method="post">
+    <button type="submit">Log out</button>
+  </form>
+
+  <span class="stickFoot">Logged in as <%=@session[:user].email%></span>
+<% end %>
+
+<%# registration code...
+
+      <form action="register" method="post">
+        <fieldset>
+          <div>
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" />
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" />
+          </div>
+          <div>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" id="confirm_password" />
+          </div>
+          <div>
+            <input type="submit" value="Register"/>
+          </div>
+        <fieldset>
+      </form>
+
+ %>
