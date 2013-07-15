@@ -12,26 +12,26 @@
       <div class="span4">
         <div class="hero-unit">
 	      <% if @error %>
-	        <div>Please correct the following error: <%=@error%> 
+	        <div>Please correct the following error: <%=@error%>
 		  <% end %>
 		  <form action="register" method="post">
 		    <fieldset>
-			  <div>
-			    <label for="email">Email:</label>
-				<input type="text" name="email" id="email" />
-			  </div>  
-			  <div>
-			    <label for="password">Password:</label>
-				<input type="password" name="password" id="password" />
-			  </div>  
-			  <div>
-			    <label for="confirm_password">Confirm Password:</label>
-				<input type="password" name="confirm_password" id="confirm_password" />
-			  </div>
-			  <div>
-				<input type="submit" value="Register"/>
-			  </div>
-			<fieldset>
+  			  <div>
+  			    <label for="email">Email:</label>
+    				<input type="text" name="email" id="email" />
+  			  </div>
+  			  <div>
+  			    <label for="password">Password:</label>
+    				<input type="password" name="password" id="password" />
+  			  </div>
+  			  <div>
+  			    <label for="confirm_password">Confirm Password:</label>
+    				<input type="password" name="confirm_password" id="confirm_password" />
+  			  </div>
+  			  <div>
+    				<input type="submit" value="Register"/>
+  			  </div>
+  			<fieldset>
 		  </form>
         </div>
       </div>

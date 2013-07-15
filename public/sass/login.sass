@@ -1,0 +1,36 @@
+@import './vars'
+
+h1
+  text-align: center
+  font-size: 44px
+
+form
+  text-align: center
+  margin: 250px 0 0 0
+
+input
+  width: 80%
+  border: 0
+  height: 45px
+  margin: 5px 0
+  text-indent: 10px
+  font: italic 24px $f-serif
+  @include box-shadow(inset 0 3px 3px $c-hblack, inset 0 -3px 3px $c-hwhite, 0 3px 7px #000)
+  @include border-radius(3px)
+  @include background(#cbcbcb linear-gradient(#fff, #cbcbcb))
+
+
+button
+  font-size: 24px
+  width: 200px
+  padding: 5px
+  margin: 10px 0 0 0
+  @include ctaBtn
+
+.stickFoot
+  position: absolute
+  display: block
+  font-size: 20px
+  width: 100%
+  text-align: center
+  bottom: 155px
