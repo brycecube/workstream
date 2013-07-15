@@ -50,11 +50,13 @@ class IndexModule < Sinatra::Base
   get '/routines' do
     if session[:user]
       user = session[:user]
+      @css.push( '/css/routines.css' )
+      @js.push( '/js/routines.js' )
       @page_title = "#{settings.app_name} - Routines for #{user.email}"
       @routines = Routine.all(:user_id => user.id)
       erb :routines
     else
-      'Please log in first'
+      erb :index
     end
   end
 
