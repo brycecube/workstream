@@ -8,10 +8,14 @@ body
   // font-family: $f-main
   font-family: "Helvetica Neue", "Helvetica", sans-serif
   color: #fff
-  background: $i-bg
-  background-size: 300px
+  @include background(#222 linear-gradient(#000 -50%, #222 40%) no-repeat)
 
 a, a:visited
   color: $c-link
   text-decoration: none
 
+input
+  @include input
+
+.cta
+  @include ctaBtn

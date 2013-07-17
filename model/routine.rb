@@ -7,7 +7,7 @@ class Routine
   property :name, String, :length => 255, :required => true
   property :description, String, :length => 255, :required => false
 
-  has n, :routine_exercises
+  has n, :routine_exercises, :order => [ :sort ]
 end
 
 class RoutineExercise
