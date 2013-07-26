@@ -53,14 +53,27 @@ class IndexModule < Sinatra::Base
     end
   end
 
+  def page_title
+    page = @title ? "#{@title} - " : ""
+    return "#{page}#{settings.app_name}"
+  end
+
   get '/' do
-    @css.push( '/css/login.css' )
-    @js.push( '/js/login.js' )
-    @header = "Liftstream"
-    @footer = partial(:footer)
-    @page_title = "#{settings.app_name} - Home"
-    @page = "home"
-    erb :index
+    if session[:user]
+      redirect '/routines'
+    else
+      @css.push( '/css/login.css' )
+      @js.push( '/js/login.js' )
+      @header = "Liftstream"
+      @footer = partial(:footer)
+      @title = "Home"
+      @page = "home"
+      erb :index
+    end
+  end
+
+  get '/account' do
+    erb :account
   end
 
   get '/routines' do
@@ -68,10 +81,12 @@ class IndexModule < Sinatra::Base
       user = session[:user]
       @css.push( '/css/routines.css' )
       @js.push( '/js/routines.js' )
-      @nav = [
-        { :url => '/account',       :label => 'Settings',      :child_urls => ['account/profile'] }
-      ]
-      @page_title = "#{settings.app_name} - Routines for #{user.email}"
+      @nav = [{
+        :url => '/account',
+        :label => 'Settings',
+        :child_urls => ['account/profile']
+      }]
+      @title = "Routines for #{user.email}"
       @page = "routines"
       @routines = Routine.all(:user_id => user.id)
       erb :routines
@@ -124,7 +139,7 @@ class IndexModule < Sinatra::Base
       end
       redirect '/routines'
     else
-      'Please log in first'
+      redirect '/'
     end
   end
 
