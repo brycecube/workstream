@@ -19,6 +19,7 @@ class IndexModule < Sinatra::Base
     DataMapper.setup(:default, "#{config['db']['protocol']}://#{config['db']['username']}:#{config['db']['password']}@#{config['db']['host']}/#{config['db']['database']}")
     DataMapper.finalize
 
+    set :bind, '0.0.0.0'
     set :sessions, true
     use Rack::Session::Cookie, :key => 'rack.session',
                                :expire_after => 31536000,
@@ -59,7 +60,7 @@ class IndexModule < Sinatra::Base
       erb :index
     end
   end
-  
+
   post '/routine' do
     # delete old exercises
     routine_id = params[:routine_id]
@@ -69,7 +70,7 @@ class IndexModule < Sinatra::Base
     routine = Routine.get(routine_id)
     routine.name = params[:name]
     routine.description = params[:description]
-    
+
     # create new exercises and sort them
     exercises = []
     params.each() do |key, value|
@@ -82,19 +83,19 @@ class IndexModule < Sinatra::Base
       end
     end
     exercises.sort { |a, b| a.sort <=> b.sort }
-    
+
     # add new exercises to the routine
     for exercise in exercises do
       routine.routine_exercises << exercise
       exercise.save
     end
-    
+
     #save
     routine.save
-    
+
     redirect '/routines'
   end
-  
+
   post '/add-routine' do
     if session[:user]
       user = session[:user]
@@ -107,7 +108,7 @@ class IndexModule < Sinatra::Base
       'Please log in first'
     end
   end
-  
+
   post '/add-routine-exercise' do
     r = Routine.get(params[:routine_id])
     re = RoutineExercise.create(:name => 'New Exercise', :sort => r.routine_exercises.last.sort+1)
@@ -116,6 +117,6 @@ class IndexModule < Sinatra::Base
     re.save
     redirect '/routines'
   end
-  
+
   run! if app_file == $0
 end
