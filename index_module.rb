@@ -1,6 +1,12 @@
 require 'rubygems'
 require 'sinatra/base'
-require 'sinatra/reloader'
+
+begin
+  require 'sinatra/reloader'
+rescue LoadError
+  puts "#{$!}. Run 'gem install sinatra-contrib' to fix this error."
+  exit
+end
 require 'auth/auth_ext'
 require 'model/routine'
 
