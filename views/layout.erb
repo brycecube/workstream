@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<% if @early %>
+  <%=@early %>
+<% end %>
 <html>
 <head>
   <title><%= page_title %></title>
@@ -9,7 +12,7 @@
       <link rel="stylesheet" type="text/css" href="<%= @src %>" />
   <% end %>
 </head>
-<body <% if @page %>class="<%=@page%>"<% end %>>
+<body<% if @page %> class="body-<%=@page%>"<% end %>>
 
 <% if @nav %>
   <nav class="nav">
@@ -23,13 +26,13 @@
 
 <% if @header %>
  <header>
-  <h1>
+  <h1 title="Liftstream">
     <%=@header%>
   </h1>
  </header>
 <% end %>
 
-<div id="content">
+<div id="content"<% if @page %> class="<%=@page%>"<% end %>>
     <%= yield %>
 </div>
 

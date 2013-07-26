@@ -37,7 +37,7 @@ class IndexModule < Sinatra::Base
                                :secret => config[:cookie_secret]
     set :session_secret, config[:cookie_secret]
 
-    set :app_name, 'Workout Tracker'
+    set :app_name, 'Liftstream'
     set :port, config['port']
     set :protection, :except => :json_csrf
   end
@@ -73,7 +73,17 @@ class IndexModule < Sinatra::Base
   end
 
   get '/account' do
+    if session[:user]
+      user = session[:user]
+      @css.push( '/css/account.css' )
+      @header = "Account"
+      @footer = partial(:footer)
+      @page = "account"
+      @title = "Welcome, #{user.email}"
     erb :account
+    else
+      redirect '/' #de-dupe the "if youre not logged in, redirect to login page" logic
+    end
   end
 
   get '/routines' do
@@ -81,6 +91,7 @@ class IndexModule < Sinatra::Base
       user = session[:user]
       @css.push( '/css/routines.css' )
       @js.push( '/js/routines.js' )
+      @early = partial(:early)
       @nav = [{
         :url => '/account',
         :label => 'Settings',
@@ -91,7 +102,7 @@ class IndexModule < Sinatra::Base
       @routines = Routine.all(:user_id => user.id)
       erb :routines
     else
-      redirect '/'
+      redirect '/' #de-dupe the "if youre not logged in, redirect to login page" logic
     end
   end
 
@@ -139,7 +150,7 @@ class IndexModule < Sinatra::Base
       end
       redirect '/routines'
     else
-      redirect '/'
+      redirect '/' #de-dupe the "if youre not logged in, redirect to login page" logic
     end
   end
 

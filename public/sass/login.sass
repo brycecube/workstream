@@ -3,28 +3,29 @@
 body
   padding: 0 15px
 
-h1
+#content
+  margin: 25px 0 15px
   text-align: center
-  text-transform: uppercase
-  font-size: 2.4em
-  margin: 0 0 25px
+p
+  font-size: 20px
+  margin: 0 0 10px
+  font-weight: bold
 
 form
   text-align: center
-  margin: 0 0 45px
 
 input
   width: 100%
   box-sizing: border-box
-  margin: 0 0 20px
+  margin: 0 0 15px
   padding: 10px 0
   text-indent: 5px
   font-size: 24px
   font-weight: bold
   text-align: center
+  &:focus
+    @include glow(20px)
 
 .cta
-  font-size: 18px
   width: 200px
-  padding: 7px 0
-  margin: 20px 0 0 0
+  margin: 10px 0 0 0

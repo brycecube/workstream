@@ -7,8 +7,8 @@ $experimental-support-for-opera:        false !default
 $experimental-support-for-microsoft:    false !default
 $experimental-support-for-khtml:        false !default
 
-// @include font-face('Droid Sans', font-files("DroidSans.ttf", truetype), 'DroidSans.ttf', normal)
-// @include font-face('Droid Sans', font-files("DroidSans-Bold.ttf", truetype), 'DroidSansBold.ttf', bold)
+@include font-face('Droid Sans', font-files("DroidSans.ttf", truetype), 'DroidSans.ttf', normal)
+@include font-face('Droid Sans', font-files("DroidSans-Bold.ttf", truetype), 'DroidSansBold.ttf', bold)
 // @include font-face('Minecraftia', font-files("Minecraftia.ttf", truetype), 'Minecraftia.ttf', normal)
 
 $c-link: #26baeb
@@ -16,7 +16,7 @@ $c-cta: #E9AD2C
 $c-hwhite: rgba(255,255,255,.5)
 $c-hblack: rgba(0,0,0,.25)
 
-$f-main: "Helvetica Neue", Helvetica, Arial, sans-serif
+$f-main: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
 $f-serif: 'Georgia', serif
 
 $i-bg: inline-image('bg.jpg')
@@ -32,6 +32,9 @@ $i-bg: inline-image('bg.jpg')
   @include box-shadow(0 -1px 0px #ffd076)
   @include border-radius(2px)
 
+@mixin glow($weight)
+  @include box-shadow(inset 0 0 10px $c-hblack, 0px 0px $weight #FFD400)
+
 @mixin input
   border: 2px solid #363636
   @include box-shadow(inset 0 -1px 0 $c-hblack, 0 2px 0px rgba(0,0,0,.3))
@@ -39,4 +42,7 @@ $i-bg: inline-image('bg.jpg')
   @include background(#bbb linear-gradient(rgb(180,180,180) 0%, #fff 60%))
   &:focus
     outline: 1px solid #ffdd00
-    @include box-shadow(inset 0 0 10px $c-hblack, 0px 0px 20px #FFD400)
+    @include glow(10px)
+
+@mixin shadow
+  @include box-shadow(0 3px 5px rgba(0,0,0,.5))

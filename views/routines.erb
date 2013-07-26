@@ -1,35 +1,37 @@
-<div id="date">
-<a href="#">Previous</a>
-Date
-<a href="#">Next</a>
-</div>
+<time>
+	<a class="prev" href="#">Previous</a>
+		<p>Today, June 15th</p>
+	<a class="next" href="#">Next</a>
+</time>
+
 <% for @routine in @routines %>
 	<section class="routine">
-		this is a routine
-		<div class="exercses">
-			  <% for @exercise in @routine.routine_exercises %>
-			  <input class="exerciseName" type="text" name="name_<%=@exercise.id%>" value="<%=@exercise.name%>" />
-				<input type="text" name="sort_<%=@exercise.id%>" value="<%=@exercise.sort%>" />
-				<br/>
-			  <% end %>
-		</div>
+		<%=@routine.name %>
+		<% if @routine.routine_exercises %>
+			<div class="exercises">
+				  <% for @exercise in @routine.routine_exercises %>
+				  <input class="big" type="text" name="name_<%=@exercise.id%>" value="<%=@exercise.name%>" />
+					<input type="text" name="sort_<%=@exercise.id%>" value="<%=@exercise.sort%>" />
+					<br/>
+				  <% end %>
+			</div>
+		<% end %>
 	</section>
-<!-- 	<div class="row">
-	  <div class="span12">
+  <section class="routine-edit">
 		<form action="/routine" method="post">
-		  <label for="name">Routine Name:</label> <input type="text" name="name" value="<%=@routine.name%>" />
+		  <label for="name">Routine Name:</label> <input class="big" type="text" name="name" value="<%=@routine.name%>" />
 		  <label for="name">Description:</label>
 		  <textarea name="description"><%=@routine.description%></textarea>
 		  <table class="table-striped">
 			<thead>
-			  <th>Exercise name</th>
+			  <th>ExerciseName</th>
 			  <th>Sort</th>
 			</thead>
 			<tbody>
 			  <% for @exercise in @routine.routine_exercises %>
 				<tr>
 				  <td>
-				  	<input type="text" name="name_<%=@exercise.id%>" value="<%=@exercise.name%>" />
+				  	<input class="big" type="text" name="name_<%=@exercise.id%>" value="<%=@exercise.name%>" />
 				  </td>
 				  <td>
 				  	<input type="text" name="sort_<%=@exercise.id%>" value="<%=@exercise.sort%>" />
@@ -45,9 +47,7 @@ Date
 			<input type="hidden" name="routine_id" value="<%=@routine.id%>" />
 			<button type="submit">Add New Exercise to this Routine</button>
 		</form>
-	  </div>
-	</div>
-	<br/><br/> -->
+  </section >
 <% end %>
 
 <form action="/add-routine" method="post">

@@ -13,10 +13,27 @@ a, a:visited
   color: $c-link
   text-decoration: none
 
-input
+header
+  text-transform: uppercase
+  font-size: 1.4em
+  h1
+    text-align: center
+    display: block
+    color: #666
+    text-shadow: 0 1px 0px rgba(255,255,255,.5)
+
+nav
+  position: absolute
+  top: 0
+  left: 50%
+
+
+input, textarea
   @include input
 
 .cta
+  font-size: 18px
+  padding: 7px
   @include ctaBtn
 
 footer

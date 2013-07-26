@@ -85,7 +85,7 @@ end
 #
 #   INTERNAL_CONFIG_LOCATION = 'config.yaml'
 #   EXTERNAL_CONFIG_LOCATION = '/etc/brycecube/workouttracker.yaml'
-#   APP_NAME = 'Workout Tracker'
+#   APP_NAME = 'Liftstream'
 #
 #   config = YamlConfig.new( INTERNAL_CONFIG_LOCATION )
 #   config = config.override( EXTERNAL_CONFIG_LOCATION )
