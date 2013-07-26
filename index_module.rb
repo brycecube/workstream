@@ -65,7 +65,7 @@ class IndexModule < Sinatra::Base
       @css.push( '/css/login.css' )
       @js.push( '/js/login.js' )
       @header = "Liftstream"
-      @footer = partial(:footer)
+      @footer = partial(:footer) # this is a very sloppy implementation.
       @title = "Home"
       @page = "home"
       erb :index
@@ -77,7 +77,7 @@ class IndexModule < Sinatra::Base
       user = session[:user]
       @css.push( '/css/account.css' )
       @header = "Account"
-      @footer = partial(:footer)
+      @footer = partial(:footer) # this is a very sloppy implementation.
       @page = "account"
       @title = "Welcome, #{user.email}"
     erb :account
@@ -91,7 +91,7 @@ class IndexModule < Sinatra::Base
       user = session[:user]
       @css.push( '/css/routines.css' )
       @js.push( '/js/routines.js' )
-      @early = partial(:early)
+      @early = partial(:early) # this is a very sloppy implementation.
       @nav = [{
         :url => '/account',
         :label => 'Settings',
