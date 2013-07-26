@@ -9,31 +9,32 @@
       <link rel="stylesheet" type="text/css" href="<%= @src %>" />
   <% end %>
 </head>
-<body>
+<body <% if @page %>class="<%=@page%>"<% end %>>
 
-<%
-=begin
-%>
-<ul class="nav">
-  <% @nav.each() do |item| %>
-      <% match = item[:url] == request.path_info %>
-      <% item[:child_urls].each() { |url| match = match || request.path_info.match( url ) } %>
-      <li<%=(match ? ' class="active"' : '')%>>
-        <a href="<%=item[:url]%>"><%=item[:label]%></a>
-      </li>
-  <% end %>
-</ul>
-<%
-=end
-%>
+<% if @nav %>
+  <ul class="nav">
+    <% @nav.each() do |item| %>
+        <% match = item[:url] == request.path_info %>
+        <% item[:child_urls].each() { |url| match = match || request.path_info.match( url ) } %>
+          <a href="<%=item[:url]%>" <%=(match ? ' class="active"' : '')%>><%=item[:label]%></a>
+    <% end %>
+  </ul>
+<% end %>
 
-<div id="container">
+<% if @header %>
+ <h1>
+  <%=@header%>
+ </h1>
+<% end %>
+
+<div id="content">
     <%= yield %>
 </div>
 
 <% for @script in @js %>
     <script type="text/javascript" src="<%= @script %>"></script>
 <% end %>
+
 </body>
 </html>
 

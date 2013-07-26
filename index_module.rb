@@ -1,9 +1,14 @@
 require 'rubygems'
 require 'sinatra/base'
+require 'sinatra/reloader'
 require 'auth/auth_ext'
 require 'model/routine'
 
 class IndexModule < Sinatra::Base
+  configure :development do
+    register Sinatra::Reloader
+  end
+
   register Sinatra::Auth
 
   configure do
@@ -34,17 +39,14 @@ class IndexModule < Sinatra::Base
   before do
     @js = ['/js/main.js']
     @css = ['/css/main.css']
-    # @nav = [
-    #         { :url => '/',              :label => 'Home',    :child_urls => []},
-    #         { :url => '/account',       :label => 'Profile',      :child_urls => ['account/profile'] },
-    #       ]
   end
 
   get '/' do
     @css.push( '/css/login.css' )
     @js.push( '/js/login.js' )
+    @header = 'Liftstream'
     @page_title = "#{settings.app_name} - Home"
-
+    @page = "home"
     erb :index
   end
 
@@ -53,11 +55,15 @@ class IndexModule < Sinatra::Base
       user = session[:user]
       @css.push( '/css/routines.css' )
       @js.push( '/js/routines.js' )
+      @nav = [
+        { :url => '/account',       :label => 'Settings',      :child_urls => ['account/profile'] }
+      ]
       @page_title = "#{settings.app_name} - Routines for #{user.email}"
+      @page = "routines"
       @routines = Routine.all(:user_id => user.id)
       erb :routines
     else
-      erb :index
+      redirect '/'
     end
   end
 

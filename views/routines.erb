@@ -8,7 +8,7 @@ Date
 		this is a routine
 		<div class="exercses">
 			  <% for @exercise in @routine.routine_exercises %>
-			  <input type="text" name="name_<%=@exercise.id%>" value="<%=@exercise.name%>" />
+			  <input class="exerciseName" type="text" name="name_<%=@exercise.id%>" value="<%=@exercise.name%>" />
 				<input type="text" name="sort_<%=@exercise.id%>" value="<%=@exercise.sort%>" />
 				<br/>
 			  <% end %>
