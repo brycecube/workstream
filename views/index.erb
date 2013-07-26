@@ -4,13 +4,10 @@
     <input type="password" name="password" placeholder="password" />
     <button type="submit" class="cta">Log in</button>
   </form>
-  <a class="stickFoot" href="/register">Register for an account</a>
 <% else %>
   <form action="/logout" method="post">
     <button type="submit" class="cta">Log out</button>
   </form>
-
-  <span class="stickFoot">Logged in as <%=@session[:user].email%></span>
 <% end %>
 
 <%# registration code...

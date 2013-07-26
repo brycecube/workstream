@@ -1,0 +1,5 @@
+<% if @session[:user] != nil %>
+  Logged in as <%=@session[:user].email%>
+<% else %>
+  <a href="/register">Register for an account</a>
+<% end %>

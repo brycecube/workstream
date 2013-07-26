@@ -4,7 +4,7 @@ Date
 <a href="#">Next</a>
 </div>
 <% for @routine in @routines %>
-	<div class="routine">
+	<section class="routine">
 		this is a routine
 		<div class="exercses">
 			  <% for @exercise in @routine.routine_exercises %>
@@ -13,7 +13,7 @@ Date
 				<br/>
 			  <% end %>
 		</div>
-	</div>
+	</section>
 <!-- 	<div class="row">
 	  <div class="span12">
 		<form action="/routine" method="post">

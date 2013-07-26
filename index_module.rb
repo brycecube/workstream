@@ -47,10 +47,17 @@ class IndexModule < Sinatra::Base
     @css = ['/css/main.css']
   end
 
+  helpers do
+    def partial(page, options={})
+      erb page.to_sym, options.merge!(:layout => false)
+    end
+  end
+
   get '/' do
     @css.push( '/css/login.css' )
     @js.push( '/js/login.js' )
-    @header = 'Liftstream'
+    @header = "Liftstream"
+    @footer = partial(:footer)
     @page_title = "#{settings.app_name} - Home"
     @page = "home"
     erb :index

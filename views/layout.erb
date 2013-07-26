@@ -12,24 +12,32 @@
 <body <% if @page %>class="<%=@page%>"<% end %>>
 
 <% if @nav %>
-  <ul class="nav">
+  <nav class="nav">
     <% @nav.each() do |item| %>
         <% match = item[:url] == request.path_info %>
         <% item[:child_urls].each() { |url| match = match || request.path_info.match( url ) } %>
           <a href="<%=item[:url]%>" <%=(match ? ' class="active"' : '')%>><%=item[:label]%></a>
     <% end %>
-  </ul>
+  </nav>
 <% end %>
 
 <% if @header %>
- <h1>
-  <%=@header%>
- </h1>
+ <header>
+  <h1>
+    <%=@header%>
+  </h1>
+ </header>
 <% end %>
 
 <div id="content">
     <%= yield %>
 </div>
+
+<% if @footer %>
+ <footer>
+    <%=@footer%>
+ </footer>
+<% end %>
 
 <% for @script in @js %>
     <script type="text/javascript" src="<%= @script %>"></script>
