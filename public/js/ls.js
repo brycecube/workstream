@@ -11,6 +11,10 @@
       return dom[selector];
     }
 
+    /*
+    * This approach is considerably faster than Zepto for mobile devices.
+    * http://jsperf.com/data-attribute-set-get-delete-methods/edit
+    */
     function data(target) {
       function getData(dataObj) {
         return target.getAttribute('data-' + dataObj);
