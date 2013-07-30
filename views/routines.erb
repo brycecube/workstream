@@ -5,14 +5,13 @@
 </time>
 
 <% for @routine in @routines %>
-	<section class="routine">
+	<section class="routine" data-el="routine">
 		<%=@routine.name %>
 		<% if @routine.routine_exercises %>
-			<div class="exercises">
+			<div class="exercises" data-el="exercise">
 				  <% for @exercise in @routine.routine_exercises %>
-				  <input class="big" type="text" name="name_<%=@exercise.id%>" value="<%=@exercise.name%>" />
-					<input type="text" name="sort_<%=@exercise.id%>" value="<%=@exercise.sort%>" />
-					<br/>
+					  <input class="big" type="text" name="name_<%=@exercise.id%>" value="<%=@exercise.name%>" />
+						<input class="sortOrder" type="text" name="sort_<%=@exercise.id%>" value="<%=@exercise.sort%>" />
 				  <% end %>
 			</div>
 		<% end %>

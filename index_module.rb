@@ -43,8 +43,12 @@ class IndexModule < Sinatra::Base
   end
 
   before do
+    @beforejs = ['/js/zepto.js','/js/touch.js','/js/ls.js']
+
     @js = ['/js/main.js']
     @css = ['/css/main.css']
+
+    @afterjs = ['/js/dispatcher.js']
   end
 
   helpers do

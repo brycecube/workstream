@@ -8,6 +8,11 @@
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="Content-Style-Type" content="text/css" />
+
+  <% for @script in @beforejs %>
+      <script type="text/javascript" src="<%= @script %>"></script>
+  <% end %>
+
   <% for @src in @css %>
       <link rel="stylesheet" type="text/css" href="<%= @src %>" />
   <% end %>
@@ -43,6 +48,11 @@
 <% end %>
 
 <% for @script in @js %>
+    <script type="text/javascript" src="<%= @script %>"></script>
+<% end %>
+
+
+<% for @script in @afterjs %>
     <script type="text/javascript" src="<%= @script %>"></script>
 <% end %>
 
