@@ -2,7 +2,8 @@
   'use strict';
 
   w.ls = (function() {
-    var dom = {};
+    var dom = {},
+        fn = {};
 
     function selectElement(selector) {
       if (!dom[selector])
@@ -11,19 +12,32 @@
       return dom[selector];
     }
 
-    /*
-    * This approach is considerably faster than Zepto for mobile devices.
-    * http://jsperf.com/data-attribute-set-get-delete-methods/edit
-    */
+    /**
+     * This approach is considerably faster than Zepto for mobile devices.
+     * http://jsperf.com/data-attribute-set-get-delete-methods/edit
+     *
+     * @constructor
+     * @param {HTMLElement} target The html element that targets the object youre fetching data attributes from
+     */
     function data(target) {
+     /**
+      * @param {String} dataObj The data attribute youre attempting to get from the target
+      */
       function getData(dataObj) {
         return target.getAttribute('data-' + dataObj);
       }
 
+    /**
+     * @param {String} dataObj The data attribute youre attempting to set for the target
+     * @param {Whatever} value Value of the data attribute you're setting on the target
+     */
       function setData(dataObj, value) {
         return target.setAttribute('data-' + dataObj, value);
       }
 
+    /**
+     * @param {String} dataObj The data attribute youre attempting to delete from the target
+     */
       function removeData(dataObj) {
         return target.removeAttribute('data-' + dataObj);
       }
@@ -32,7 +46,8 @@
         set: setData,
         get: getData,
         remove: removeData
-      }
+      };
+
     }
 
     function getJSON(url, callback){
@@ -41,7 +56,7 @@
         if(ajax.readyState === 4 && ajax.status === 200){
           var r = ajax.response;
 
-          // parse to json if "string" json
+          // parse to json, if "stringified" json
           if (r.match(/^(\[|\{)/)) {
             r = JSON.parse(r);
           }
@@ -56,10 +71,10 @@
 
     return {
       $: selectElement,
+      fn: fn,
       data: data,
       ajax: getJSON
-    }
-
+    };
 
   }());
 

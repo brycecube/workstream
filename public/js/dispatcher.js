@@ -1,16 +1,13 @@
-(function(w, d) {
+(function(w, d, ls) {
   'use strict';
 
   var body = d.body;
-
-  var evtDel = {
-    'routine': ls.routine.openRoutine
-  };
 
   // fire "clicks" for desktop
   if (!('ontouchend' in window)) {
     body.addEventListener('click', function(e){
       $(e.target).trigger('tap');
+      e.preventDefault();
     });
    }
 
@@ -19,7 +16,9 @@
         id,
         fireEvent;
 
-    if ((id = target.getAttribute('data-el')) && (fireEvent = evtDel[id])) {
+    id = ls.data(target).get('el').split('.');
+
+    if (id && (fireEvent = ls.fn[id[0]][id[1]])) {
       fireEvent(target);
     }
 
@@ -30,4 +29,4 @@
     console.log(target);
   });
 
-}(window, document));
+}(window, document, window.ls));

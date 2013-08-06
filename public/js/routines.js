@@ -1,9 +1,9 @@
-(function(w, d) {
+(function(w, d, ls) {
   'use strict';
 
-  w.ls.routine = (function() {
+  ls.fn.routine = (function() {
 
-    function openRoutine(target) {
+    function showHideRoutine(target) {
       if (ls.data(target).get('active')) {
         target.className = target.className.replace(/\sactive/,'');
         ls.data(target).remove('active');
@@ -14,9 +14,9 @@
     }
 
     return {
-      openRoutine: openRoutine
-    }
+      showHideRoutine: showHideRoutine
+    };
+
   }());
 
-
-}(window, document));
+}(window, document, window.ls));

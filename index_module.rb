@@ -51,11 +51,10 @@ class IndexModule < Sinatra::Base
     @afterjs = ['/js/dispatcher.js']
   end
 
-  helpers do
-    def partial(page, options={})
-      erb page.to_sym, options.merge!(:layout => false)
-    end
+  def partial(page)
+    erb page.to_sym, :layout => false
   end
+
 
   def page_title
     page = @title ? "#{@title} - " : ""
@@ -84,7 +83,7 @@ class IndexModule < Sinatra::Base
       @footer = partial(:footer) # this is a very sloppy implementation.
       @page = "account"
       @title = "Welcome, #{user.email}"
-    erb :account
+    erb :account, :layout => false # sloppy...abstract out into function, why doesnt partial function work?
     else
       redirect '/' #de-dupe the "if youre not logged in, redirect to login page" logic
     end
@@ -99,6 +98,7 @@ class IndexModule < Sinatra::Base
       @nav = [{
         :url => '/account',
         :label => 'Settings',
+        :data_el => 'main.settings',
         :child_urls => ['account/profile']
       }]
       @title = "Routines for #{user.email}"

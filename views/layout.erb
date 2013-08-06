@@ -24,7 +24,7 @@
     <% @nav.each() do |item| %>
         <% match = item[:url] == request.path_info %>
         <% item[:child_urls].each() { |url| match = match || request.path_info.match( url ) } %>
-          <a href="<%=item[:url]%>" <%=(match ? ' class="active"' : '')%>><%=item[:label]%></a>
+          <a data-el="<%=item[:data_el]%>" href="<%=item[:url]%>" <%=(match ? ' class="active"' : '')%>><%=item[:label]%></a>
     <% end %>
   </nav>
 <% end %>

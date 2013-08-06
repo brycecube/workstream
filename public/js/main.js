@@ -1,17 +1,31 @@
-(function(w, d) {
+(function(w, d, ls) {
   'use strict';
 
-}(window, document));
+  ls.fn.main = (function() {
 
+    function settings() {
+      ls.ajax('/account', function(r){
+        console.log(r);
+      });
+      // show or hide settings
+    }
+
+    return {
+      settings: settings
+    };
+
+  }());
+
+}(window, document, window.ls));
 
 /*
 
 template for iife class
 
-(function(w, d) {
+(function(w, d, ls) {
   'use strict';
 
-  w.ls.someNamespace = (function() {
+  ls.fn.namespace = (function() {
 
     function test() {
       console.log('this is a test');
@@ -19,10 +33,11 @@ template for iife class
 
     return {
       test: test
-    }
+    };
+
   }());
 
 
-}(window, document));
+}(window, document, window.ls));
 
 */
