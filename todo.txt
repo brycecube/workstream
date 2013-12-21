@@ -1,0 +1,2 @@
+Change to jquery
+Lighter redesign - bootstrap

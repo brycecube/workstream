@@ -1,0 +1,53 @@
+@startuml
+
+class Set {
+    int repCount
+    float weight
+    int sort
+}
+
+class WorkoutExercise {
+    List<Set> sets
+    Exercise exercise
+}
+
+class Workout {
+    List<WorkoutExercise> workoutExercises
+}
+
+class Exercise {
+    String name
+    String description
+}
+
+class Routine {
+    String name
+    Schedule schedule
+    List<Exercise> exercises
+}
+
+class Schedule {
+    String dayOfWeek
+    int weekCycleLength
+}
+
+Set *-- WorkoutExercise
+WorkoutExercise *-- Workout
+WorkoutExercise *-- Exercise
+Exercise *-- Routine
+Schedule *-- Routine
+
+
+class User {
+	String email
+	String passwordHash
+	Role role
+}
+
+class Role {
+	String name
+}
+
+Role *-- User
+
+@enduml
