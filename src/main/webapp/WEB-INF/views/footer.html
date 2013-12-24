@@ -1,0 +1,12 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<span th:fragment="footer">
+    <span th:if="${user}">
+        Logged in as ${user.email}
+    </span>
+    <span th:if="${user == null}">
+        <a href="/register">Register for an account</a>
+    </span>
+</span>
+</html>

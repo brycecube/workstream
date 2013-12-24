@@ -1,0 +1,23 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head" th:with="extraCSS=@{/css/project.css}"></head>
+
+<body th:class="${page} ? 'body-${page}'">
+
+<div id="content" class="routines">
+<p>log into your account</p>
+<form action="/login" method="post" autocomplete="off">
+  <input type="text" name="email" placeholder="email address" />
+  <input type="password" name="password" placeholder="password" />
+  <button type="submit" class="cta">Log in</button>
+</form>
+</div>
+
+<footer th:include="footer :: footer"></footer>
+
+<script type="text/javascript" src="${script}" th:each="js : ${#strings.listSplit(js?:'', ',')}"></script>
+<script type="text/javascript" src="${script}" th:each="js : ${#strings.listSplit(afterJs?:'', ',')}"></script>
+
+</body>
+</html>
+

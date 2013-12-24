@@ -1,9 +1,0 @@
-db:
-    protocol:   mysql
-    host:       localhost
-    username:   test
-    password:   test
-    database:   workouttracker
-
-port:               4567
-cookie_secret:      thisisnotreallysecure

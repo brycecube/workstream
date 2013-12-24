@@ -1,0 +1,57 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head" th:with="extraCSS=@{/css/project.css}"></head>
+<body>
+    <div class="navbar" th:include="layout :: navbar" th:with="active='home'"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="span12">
+                <div class="hero-unit">
+                    <h1>brycecube.com</h1>
+                    <p>Enjoy the whitespace</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <div class="row">
+                    <div class="span4">
+                        <div class="hero-unit project-long">
+                            <div class="thumbnail">
+                                <a th:href="@{/protocube}">
+                                    <img th:src="@{/img/proto260.png}" alt="protocube" />
+                                </a>
+                            </div>
+                            <h3>Protocube</h3>
+                            <p>Protocube is a puzzle game that is not like Tetris at all! It was written completely in Javascript/CSS/HTML with a tiny bit of java for score keeping. I provided all of the scripting while all of the graphics (and most of the CSS/HTML) were produced by <a href="http://o2dazone.com" target="_blank">Ozone</a></p>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <div class="hero-unit project-long">
+                            <div class="thumbnail">
+                                <a th:href="@{/photogallery/pano/map}">
+                                    <img th:src="@{/img/panoMap260.png}" alt="panoramics" />
+                                </a>
+                            </div>
+                            <h3>Panoramic Map</h3>
+                            <p>Using the Google Maps API, I've added markers for every place that I've taken a panoramic. Click each marker to see the panoramic. Zoom in for exact locations.</p>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <div class="hero-unit project-long">
+                            <div class="thumbnail">
+                                <a th:href="@{/photogallery}">
+                                    <img th:src="@{/img/photo260.png}" alt="photo gallery" />
+                                </a>
+                            </div>
+                            <h3>Photo Gallery</h3>
+                            <p>Gallery of photos I've taken. As @slotito recently pointed out, this has been my coding kata over the years.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:include="layout :: footer"></footer>
+    </div>
+</body>
+</html>

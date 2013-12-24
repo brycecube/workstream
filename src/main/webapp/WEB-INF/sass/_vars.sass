@@ -1,0 +1,47 @@
+@import 'compass/css3'
+
+$experimental-support-for-webkit:       true  !default
+$experimental-support-for-mozilla:      false !default
+$support-for-original-webkit-gradients: false !default
+$experimental-support-for-opera:        false !default
+$experimental-support-for-microsoft:    false !default
+$experimental-support-for-khtml:        false !default
+
+@include font-face('Droid Sans', font-files("DroidSans.ttf", truetype), 'DroidSans.ttf', normal)
+@include font-face('Droid Sans', font-files("DroidSans-Bold.ttf", truetype), 'DroidSansBold.ttf', bold)
+// @include font-face('Minecraftia', font-files("Minecraftia.ttf", truetype), 'Minecraftia.ttf', normal)
+
+$c-link: #26baeb
+$c-cta: #E9AD2C
+$c-hwhite: rgba(255,255,255,.5)
+$c-hblack: rgba(0,0,0,.25)
+
+$f-main: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
+$f-serif: 'Georgia', serif
+
+$i-bg: inline-image('bg.jpg')
+
+@mixin ctaBtn
+  border: 0
+  color: #fff
+  font-weight: bold
+  text-shadow: 0px -1px 0px #aa7000
+  text-transform: uppercase
+  background: $c-cta
+  border: 1px solid #ffd076
+  @include box-shadow(0 -1px 0px #ffd076)
+  @include border-radius(2px)
+
+@mixin focus($weight)
+  outline: $weight solid #FFD400
+
+@mixin input
+  border: 2px solid #363636
+  @include box-shadow(inset 0 -1px 0 $c-hblack, 0 2px 0px rgba(0,0,0,.3))
+  @include border-radius(2px)
+  @include background(#bbb linear-gradient(rgb(180,180,180) 0%, #fff 60%))
+  &:focus
+    @include focus(5px)
+
+@mixin shadow
+  @include box-shadow(0 3px 5px rgba(0,0,0,.5))

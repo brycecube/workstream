@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.brycecube.workstream.sqlmap.StatDAO">
+
+    <resultMap id="statResult" type="com.brycecube.workstream.model.Stat">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="record_date" property="recordDate" />
+        <result column="weight" property="weight" />
+        <result column="fat_percent" property="fatPercent" />
+        <result column="muscle_percent" property="musclePercent" />
+    </resultMap>
+
+    <select id="getById" parameterType="java.lang.Integer" resultMap="statResult">
+        SELECT * FROM stat WHERE id=#{value}
+    </select>
+
+    <select id="getAll" resultMap="statResult">
+        SELECT * FROM stat
+    </select>
+
+    <insert id="save" parameterType="com.brycecube.workstream.model.Stat" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO stat
+            (user_id, record_date, weight, fat_percent, muscle_percent )
+        VALUES
+            (#{userId}, #{recordDate}, #{weight}, #{fatPercent}, #{musclePercent} )
+    </insert>
+
+</mapper>
